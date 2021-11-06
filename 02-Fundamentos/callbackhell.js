@@ -26,7 +26,7 @@ const salarios=[
 ]
 
 const getEmploye = (id, cb) => {
-    const employe = empleados.find( e =>  e.id == id)
+    const employe = empleados.find( e =>  e.id == id)?.name;
     if (employe) {
         cb(null, employe)
     }
@@ -39,7 +39,7 @@ const getEmploye = (id, cb) => {
 // console.log(getEmploye(1)); //employe with 1 does not exist here
 
 const getSalary = (id, cb) =>{
-    const salary = salarios.find( e => e.id === id)
+    const salary = salarios.find( e => e.id === id)?.salario;
     if(salary)
     {
         cb(null, salary)
@@ -49,22 +49,23 @@ const getSalary = (id, cb) =>{
     }
 }
 
-getSalary(2, (err, salario)=>{
-    if(err){
-        console.log(`error!`);
-        return console.log(err);
-    }
-    console.log(`salary exist`);
-    console.log(salario);
-})
+const id = 3;
 
-getEmploye(3, (err,empleado) => {
+getEmploye(id, (err,empleado) => {
     if(err){
         console.log('Error!');
         return console.log(err);
     }
-    console.log('empleado existe!');
-    console.log(empleado);
+    
+    getSalary(id, (err, salario)=>{
+        if(err){
+            console.log(`error!`);
+            return console.log(err);
+        }
+        console.log(`salary exist`);
+        console.log(`employe ${empleado} has a base salary on ${salario}`);
+    })
+
 })
 
 
