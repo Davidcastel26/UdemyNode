@@ -35,22 +35,34 @@ const getEmploye = (id, cb) => {
         cb(`employe with ${id} does not exist here`)
     }
     */
-   const promesa = new Promise(( resolve, reject ) => {
+//    const promesa = 
+   return new Promise(( resolve, reject ) => {
         const employe = empleados.find( e =>  e.id == id)?.name;
-        if( employe){
-            resolve( employe )
-        }
-        else{
-            reject(`Does not exist that employe with the id ${id} here please call the security or 911 in urgent cases`)
-        }
+        ( employe )
+            ? resolve( employe )
+            : reject(`Does not exist that employe with the id ${id} here please call the security or 911 in urgent cases`)
     })
-    return promesa;
+    // return promesa;
 }
+
+const getSalary= (id, callback) =>{
+    return new Promise((resolve, reject)=>{
+        const salary = salarios.find(cantidad => cantidad.id === id)?.salario;
+        ( salary )
+            ? resolve(salary)
+            : reject(` salaray is not in file`)
+    })
+}
+
+
 const id = 3;
 getEmploye(id)
     .then(empleado => console.log(empleado))
     .catch(err => console.log(err))
 
+getSalary(id)
+    .then(salario => console.log(salario))
+    .catch(err => console.log(err))
 
 
 
