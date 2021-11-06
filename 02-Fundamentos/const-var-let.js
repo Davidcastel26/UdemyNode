@@ -1,3 +1,7 @@
 var nombre = 'dave'
 
-console.log(nombre);
+if(true){
+    nombre = 'Magneto'
+}
+
+console.log(nombre); // magneto
