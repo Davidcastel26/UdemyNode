@@ -44,12 +44,18 @@ const getSalary= (id, callback) =>{
 }
 
 const getInfoUser = async() => {
+    try{
     const empleado = await getEmploye(id);
     const salary = await getSalary(id)
-    return `el salario de ${empleado} es de ${salary}`;
+    return `el salario de ${empleado} es de ${salary}`
+    }
+    catch (erro){
+        throw erro;
+    }
 }
 
 const id = 2;
 
 getInfoUser( id )
     .then(msg => console.log(msg))
+    .catch(err => console.log(err))
