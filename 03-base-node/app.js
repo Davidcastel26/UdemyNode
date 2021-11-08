@@ -3,13 +3,14 @@
 const { crearTabla } = require('./helpers/multiplicar')
 const argv = require('./config/yargs')
 
+require('colors')
 
 console.clear()
 //node app --base=2 into the comant line
 // console.log(process.argv);
 // console.log(argv); //{ _: [], base: 2, '$0': 'app' }
 
-console.log('base: yargs', argv.b); //base: yargs 2
+console.log('base: yargs', argv.b, argv.h); //base: yargs 2
 
 // ----------- CONSOLE LOG FROM THE TOTAL BT -----------
 // console.log(`tabla del ${t}`)
@@ -30,8 +31,8 @@ console.log('base: yargs', argv.b); //base: yargs 2
 // let t = 4;
 
 //---------- CREATE TABLE -----------------------
-crearTabla(argv.b, argv.l)
-  .then( nombreArchi => console.log(nombreArchi, 'creado'))
+crearTabla(argv.b, argv.l, argv.h)
+  .then( nombreArchi => console.log(nombreArchi.rainbow, 'creado'))
   .catch(err => console.log(err))
 
 
