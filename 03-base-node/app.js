@@ -1,7 +1,7 @@
 // print 
 // const fs = require('fs');//fs = file system
 const { crearTabla } = require('./helpers/multiplicar')
-
+const argv = require('./config/yargs')
 
 
 console.clear()
