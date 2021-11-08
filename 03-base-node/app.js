@@ -13,17 +13,13 @@ console.clear()
 
 const [,,argument3= 'base=5'] = process.argv
 const [,base = 1] = argument3.split('=')
-console.log(argument3);
-console.log(base);
+// console.log(argument3); //. --base=1
+// console.log(base); // 1
 // let t = 4;
 
-// crearTabla(t)
-  // .then( nombreArchi => console.log(nombreArchi, 'creado'))
-  // .catch(err => console.log(err))
-
-
-
-
+crearTabla(base)
+  .then( nombreArchi => console.log(nombreArchi, 'creado'))
+  .catch(err => console.log(err))
 
 // console.log(salida);
   // fs.writeFile( `tabla-${t}.txt`, salida,(err)=>{
