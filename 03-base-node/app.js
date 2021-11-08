@@ -1,10 +1,15 @@
 // print 
 // const fs = require('fs');//fs = file system
 const { crearTabla } = require('./helpers/multiplicar')
-const argv = require('yargs').argv;
+
 
 
 console.clear()
+//node app --base=2 into the comant line
+// console.log(process.argv);
+// console.log(argv); //{ _: [], base: 2, '$0': 'app' }
+
+console.log('base: yargs', argv.b); //base: yargs 2
 
 // ----------- CONSOLE LOG FROM THE TOTAL BT -----------
 // console.log(`tabla del ${t}`)
@@ -25,9 +30,9 @@ console.clear()
 // let t = 4;
 
 //---------- CREATE TABLE -----------------------
-// crearTabla(base)
-  // .then( nombreArchi => console.log(nombreArchi, 'creado'))
-  // .catch(err => console.log(err))
+crearTabla(argv.b, argv.l)
+  .then( nombreArchi => console.log(nombreArchi, 'creado'))
+  .catch(err => console.log(err))
 
 
 
