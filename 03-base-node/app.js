@@ -1,21 +1,15 @@
 // print 
-const fs = require('fs');//fs = file system
-let t = 3;
-let salida = ''
+// const fs = require('fs');//fs = file system
+const { crearTabla } = require('./helpers/multiplicar')
 
 console.clear()
-console.log('------------');
-console.log(`tabla del ${t}`)
-console.log('------------');
+// console.log(`tabla del ${t}`)
 
-for(let i = 0; i <= 10; i++ ){
-  let total = i * t;
-  salida += `${t} + ${i} = ${total}\n`;
-}
-console.log(salida);
+let t = 3;
 
-// console.log(salida);
-fs.writeFile( `tabla-${t}.txt`, salida,(err)=>{
-    if(err) throw err
-    console.log(`tabla-${t}.txt creada papa`);
-} )
+crearTabla(t)
+   // console.log(salida);
+      // fs.writeFile( `tabla-${t}.txt`, salida,(err)=>{
+      //     if(err) throw err
+      //     console.log(`tabla-${t}.txt creada papa`);
+      // } )

@@ -9,18 +9,19 @@ const crearTabla = (base = 5) => {
     let salida = ''
 
     for(let i = 0; i <= 10; i++ ){
-        let total = i * t;
-        salida += `${t} + ${i} = ${total}\n`;
+        let total = i * base;
+        salida += `${base} + ${i} = ${total}\n`;
       }
       console.log(salida);
       
      
       
-      fs.writeFileSync( `tabla-${t}.txt`, salida);
+      fs.writeFileSync( `tabla-${base}.txt`, salida);
         
-      console.log(`tabla-${t}.txt creada`);
+      console.log(`tabla-${base}.txt creada`);
 }
 
 module.exports = {
-    crearArch: crearTabla
+    // crearTabla: crearTabla
+    crearTabla
 }
