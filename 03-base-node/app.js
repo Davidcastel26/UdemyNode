@@ -5,7 +5,17 @@ const { crearTabla } = require('./helpers/multiplicar')
 console.clear()
 // console.log(`tabla del ${t}`)
 
-let t = 4;
+// console.log(process.argv); //thge console will give us this array[
+//'C:\\Program Files\\nodejs\\node.exe',
+//'C:\\Users\\ingac\\Documents\\progra\\UdemyNode\\03-base-node\\app',
+//'--base=9'
+// ]
+
+const [,,argument3= 'base=5'] = process.argv
+const [,base = 1] = argument3.split('=')
+console.log(argument3);
+console.log(base);
+// let t = 4;
 
 // crearTabla(t)
   // .then( nombreArchi => console.log(nombreArchi, 'creado'))
