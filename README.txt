@@ -9,3 +9,6 @@ Realizar nuestro primer programa de node
 Comprender como es que Node resuelve los procesos sincronos y asincronos
 
 Comprender el ciclo de vida de un Proceso en Node
+ 
+---
+Nos enfocaremos en API REST
