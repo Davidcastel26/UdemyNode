@@ -15,8 +15,12 @@ const userPut = (req, res) => {
 }
 
 const userPost = (req, res) => {
+
+    const {name, ega} = req.body;
+
     res.status(201).json({
-        "msg":"Create API - controller"
+        name,
+        ega
     })
 }
 
