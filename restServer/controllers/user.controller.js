@@ -1,16 +1,25 @@
-const { response } = require('express')
+const { response, request } = require('express')
 
 
-const userGet = (req, res) => {
+const userGet = (req = request, res) => {
+
+    const {name, q, limit, page = 1} = req.query 
 
     res.status(200).json({
-        "msg":"get API - controller"
+        "msg":"get API - controller",
+        name,
+        q,
+        limit
     })
 }
 
 const userPut = (req, res) => {
+
+    const { id } = req.params
+
     res.status(202).json({
-        "msg":"Update API - controller"
+        "msg":"Update API - controller",
+        id
     })
 }
 
