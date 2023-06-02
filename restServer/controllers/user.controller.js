@@ -9,7 +9,8 @@ const userGet = (req = request, res) => {
         "msg":"get API - controller",
         name,
         q,
-        limit
+        limit,
+        page
     })
 }
 
