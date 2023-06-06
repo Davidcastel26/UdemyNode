@@ -1,8 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const usuarios_1 = require("../controllers/usuarios");
 const router = (0, express_1.Router)();
-module.exports = {
-    router,
-};
+router.get('/', usuarios_1.getUsers);
+router.get('/:id', usuarios_1.getUser);
+router.post('/', usuarios_1.postUser);
+router.put('/:id', usuarios_1.updateUser);
+router.delete('/:id', usuarios_1.deleteUser);
+module.exports = router;
 //# sourceMappingURL=usuario.js.map

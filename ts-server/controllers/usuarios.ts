@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 
-const getUsers = (req: Request, res: Response) => {
+export const getUsers = (req: Request, res: Response) => {
 
     res.json({
         msg: 'GetUusuarios'
@@ -8,7 +8,7 @@ const getUsers = (req: Request, res: Response) => {
 
 }
 
-const getUser = (req: Request, res: Response) => {
+export const getUser = (req: Request, res: Response) => {
 
     const {id} = req.params;
 
@@ -18,7 +18,7 @@ const getUser = (req: Request, res: Response) => {
     })
 }
 
-const postUser = (req: Request, res: Response) => {
+export const postUser = (req: Request, res: Response) => {
     
     const {body} = req;
 
@@ -28,7 +28,7 @@ const postUser = (req: Request, res: Response) => {
     })
 }
 
-const updateUser = (req: Request, res: Response) => {
+export const updateUser = (req: Request, res: Response) => {
     
     const { id } = req.params
     const { body } = req;
@@ -40,7 +40,7 @@ const updateUser = (req: Request, res: Response) => {
 
 }
 
-const deleteUser = (req: Request, res: Response) => {
+export const deleteUser = (req: Request, res: Response) => {
 
     const { id } = req.params;
 
@@ -50,12 +50,10 @@ const deleteUser = (req: Request, res: Response) => {
     })
 
 }
-
-
-module.exports = {
-    getUsers,
-    getUser,
-    postUser,
-    updateUser,
-    deleteUser
-}
+// module.exports = {
+//     getUsers,
+//     getUser,
+//     postUser,
+//     updateUser,
+//     deleteUser
+// }
