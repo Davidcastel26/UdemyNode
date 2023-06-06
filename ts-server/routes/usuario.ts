@@ -13,4 +13,6 @@ router.post('/', postUser);
 router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);
 
-module.exports = router;
+export const variableX = 123;
+
+export default router;
