@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 
-class Server{
+export class Server{
 
     private app: Application;
     private port: string;
@@ -8,6 +8,13 @@ class Server{
     constructor(){
         this.app = express();
         this.port = process.env.PORT || '8000';
+    }
+
+    listen(){
+        this.app.listen(this.port, () => {
+            console.log(`Server running on port ${this.port}`);
+            
+        })
     }
 
 }
