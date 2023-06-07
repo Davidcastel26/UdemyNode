@@ -1,9 +1,21 @@
 import { Request, Response } from "express"
+import { PrismaClient } from '@prisma/client'
 
-export const getUsers = (req: Request, res: Response) => {
+const { user } = new PrismaClient();
+
+
+export const getUsers = async (req: Request, res: Response) => {
+
+    const users = await user.findMany({
+        select:{
+            name: true,
+            email: true
+        }
+    })
 
     res.json({
-        msg: 'GetUusuarios'
+        msg: 'GetUusuarios',
+        users
     })
 
 }

@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import userRoutes from '../routes/usuario'
 import cors from 'cors'
-import { prisma } from '../prisma/connection';
+// import { prisma } from '../prisma/connection';
 
 export class Server{
 
