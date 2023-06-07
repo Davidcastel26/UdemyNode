@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import userRoutes from '../routes/usuario'
 import cors from 'cors'
+import { prisma } from '../prisma/connection';
 
 export class Server{
 
@@ -9,14 +10,27 @@ export class Server{
     private apiPaths = {
         users: '/api/users'
     }
+    // private prisma: PrismaClient();
+
 
     constructor(){
         this.app = express();
         this.port = process.env.PORT || '8000';
 
+        this.dbConnection()
         //initial methods
         this.middlewares()
         this.routes();
+    }
+
+    async dbConnection () {
+        // const user = await prisma.user
+
+       try{
+          
+       }catch(e:any){
+        throw new Error(e)
+       }
     }
 
     middlewares(){
