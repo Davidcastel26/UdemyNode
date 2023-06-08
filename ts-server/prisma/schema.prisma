@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  // previewFeatures = ["microsoftSqlServer"]
 }
 
 datasource db {
@@ -10,10 +11,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
   id Int @id @default(autoincrement())
-  name String
+  name String @db.NVarChar(255)
+  username String @unique @db.NVarChar(255)
   createdAt DateTime @default(now())
   email     String   @unique
 }

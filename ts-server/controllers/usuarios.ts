@@ -6,7 +6,7 @@ const { user } = new PrismaClient();
 
 export const getUsers = async (req: Request, res: Response) => {
 
-    const users = await user.findMany({
+    const users =  await user.findMany({
         select:{
             name: true,
             email: true
