@@ -21,6 +21,9 @@ export const getProduct = async (req: Request, res: Response) => {
     const productId = await product.findFirst({
         where:{
             id: parseInt(id)
+        },
+        include:{
+            category: true
         }
     })
 
