@@ -21,3 +21,9 @@ npm install -D nodemon
 
 - check tsconfig.json to review the configuration
 
+
+if you would like to check the database we can use prisma
+
+```
+npx prisma studio
+```
