@@ -26,5 +26,5 @@ https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#datas
 to run and connect prisma with data base run:
 
 ```
-npx prisma migrate dev --name init
+npx prisma migrate dev
 ```
