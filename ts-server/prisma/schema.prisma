@@ -13,8 +13,8 @@ datasource db {
 
 model User {
   id Int @id @default(autoincrement())
-  name String @db.NVarChar(255)
-  username String @unique @db.NVarChar(255)
+  name String
+  username String @unique
   createdAt DateTime @default(now())
   email     String   @unique
 }
