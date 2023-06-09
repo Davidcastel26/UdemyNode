@@ -40,9 +40,41 @@ export const postProduct = async (req: Request, res: Response) => {
         data: req.body
     })
 
-    res.json({
+    res.status(201).json({
         msg:'post product',
         createProduct
     })
+
+}
+
+export const deleteProduct = async (req: Request, res: Response) => {
+
+    const { id } = req.params;
+
+    const productDelete = await product.delete({
+        where:{
+            id: parseInt(id)
+        }
+    })
+
+    if(!productDelete)
+        return res.status(404).json({error:"Product not found"})
+
+    return res.status(200).json(productDelete)
+
+}
+
+export const updateProduct =async (req: Request, res: Response) => {
+
+    const {id} = req.params;
+
+    const putProduct = await product.update({
+        where:{
+            id: parseInt(id)
+        },
+        data: req.body
+    })
+
+    res.json(putProduct)
 
 }
