@@ -16,11 +16,18 @@ export const getProducts = async (req: Request, res: Response) => {
 
 export const getProduct = async (req: Request, res: Response) => {
     
-    // const { id } = req.params;
+    const { id } = req.params;
 
-    const productId = await product.findFirst()
+    const productId = await product.findFirst({
+        where:{
+            id: parseInt(id)
+        }
+    })
 
-    res.json({
+    if(!productId)
+        return res.status(404).json({error:"Product not found"})
+
+    return res.json({
         msg:'getProduct',
         productId
     })
