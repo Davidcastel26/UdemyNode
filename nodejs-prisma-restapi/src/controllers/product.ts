@@ -9,11 +9,33 @@ export const getProducts = async (req: Request, res: Response) => {
 
     // res.send('product')
     res.json({
-        msg:'GetProduct',
+        msg:'GetProducts',
         productsAll
     })
 }
 
 export const getProduct = async (req: Request, res: Response) => {
     
+    // const { id } = req.params;
+
+    const productId = await product.findFirst()
+
+    res.json({
+        msg:'getProduct',
+        productId
+    })
+
+}
+
+export const postProduct = async (req: Request, res: Response) => {
+    
+    const createProduct = await product.create({
+        data: req.body
+    })
+
+    res.json({
+        msg:'post product',
+        createProduct
+    })
+
 }
