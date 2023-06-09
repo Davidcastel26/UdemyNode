@@ -1,12 +1,16 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 
+import productRouter from '../routes/product.routes'
+import categoeryRouter from '../routes/category.routes'
+
 export class Server{
 
     private app: Application;
     private port: string;
     private apiPaths = {
-        users: '/prismapi/product'
+        product: '/prismapi/product',
+        category: '/prismapi/category'
     }
 
     constructor(){
@@ -14,7 +18,7 @@ export class Server{
         this.port = process.env.PORT || '8000';
 
         this.middlewares()
-        
+        this.routes()
     }
 
     middlewares(){
@@ -25,7 +29,8 @@ export class Server{
     }
 
     routes(){
-        this.app.use(this.apiPaths.users)
+        this.app.use(this.apiPaths.product, productRouter)
+        this.app.use(this.apiPaths.category, categoeryRouter)
     }
 
     listen(){
