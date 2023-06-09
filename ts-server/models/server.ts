@@ -17,20 +17,10 @@ export class Server{
         this.app = express();
         this.port = process.env.PORT || '8000';
 
-        this.dbConnection()
+        // this.dbConnection()
         //initial methods
         this.middlewares()
         this.routes();
-    }
-
-    async dbConnection () {
-        // const user = await prisma.user
-
-       try{
-          
-       }catch(e:any){
-        throw new Error(e)
-       }
     }
 
     middlewares(){
