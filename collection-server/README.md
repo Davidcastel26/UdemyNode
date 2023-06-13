@@ -24,3 +24,8 @@ OR
 ```
 npm i --save-dev @types/bcryptjs
 ```
+
+to verify and MAIL ADDRESS
+```
+npm i express-validator
+```
