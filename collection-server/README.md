@@ -14,3 +14,13 @@ start prisma with
 ```
 npx prisma init
 ```
+
+
+to encrypt the password intsl the bcryptjs
+```
+npm i bcryptjs
+```
+OR
+```
+npm i --save-dev @types/bcryptjs
+```
