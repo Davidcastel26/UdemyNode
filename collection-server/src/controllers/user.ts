@@ -20,7 +20,7 @@ export const getUserAll = async (req:Request, res:Response) => {
 
 export const postUser = async (req: Request, res:Response) => {
 
-    const { name, img, Google, mail, password, roles} = req.body
+    const { name, img, Google, mail, password, rolesId} = req.body
 
     const createUser = {
             name,
@@ -28,7 +28,7 @@ export const postUser = async (req: Request, res:Response) => {
             mail, 
             password,
             img, 
-            roles
+            rolesId
     }
 
     //check if the mail exist
