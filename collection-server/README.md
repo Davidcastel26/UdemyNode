@@ -14,6 +14,10 @@ start prisma with
 ```
 npx prisma init
 ```
+then you will need to run migrate to get connected with db
+```
+npx prisma migrate dev 
+```
 
 
 to encrypt the password intsl the bcryptjs
