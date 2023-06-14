@@ -18,6 +18,29 @@ export const getUserAll = async (req:Request, res:Response) => {
 
 }
 
+export const getUser = async ( req: Request, res:Response) => {
+
+    const {id} = req.params;
+
+    const getAuser = await user.findFirst({
+        where:{
+            id: parseInt(id)
+        },
+        include:{
+            roles: true
+        }
+    })
+
+    if( !getAuser ){
+        return res.status(404).json({error:"User not found"})
+    }
+
+    return res.status(200).json({
+        getAuser
+    })
+
+}
+
 export const postUser = async (req: Request, res:Response) => {
 
     const { name, img, Google, mail, password, rolesId} = req.body

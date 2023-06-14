@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
 // here we need to get our functions 
-import { getUserAll, postUser } from "../controllers/user";
+import { getUser, getUserAll, postUser } from "../controllers/user";
 import { check } from "express-validator";
 import { validationAreas } from "../middlewares/validations";
 
@@ -11,6 +11,8 @@ const { roles } = new PrismaClient()
 const router = Router()
 
 router.get('/', getUserAll)
+
+router.get('/:id', getUser)
 
 router.post('/', [
     check('name', 'Name is a must').not().isEmpty(),
