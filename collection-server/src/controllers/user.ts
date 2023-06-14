@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
-import  bcryptjs  from "bcryptjs"
 import { PrismaClient } from "@prisma/client";
+// to hash the password
+import  bcryptjs  from "bcryptjs"
+// review if mail is correct
+import { validationResult } from "express-validator";
 
 const { user } = new PrismaClient()
 
@@ -17,6 +20,9 @@ export const getUserAll = async (req:Request, res:Response) => {
 }
 
 export const postUser = async (req: Request, res:Response) => {
+
+    const errors = validationResult(req);
+    if( !errors.isEmpty()) return res.status(400).json(errors)
 
     const {name, img, google, mail, password, rol} = req.body
 
