@@ -15,9 +15,17 @@ model User {
   name String
   mail String @unique
   password String
-  rol String
   img String
   published Boolean @default(true)
   Google Boolean
   createdAt DateTime @default(now())
+  roles Roles @relation(fields: [rolesId], references: [role])
+  rolesId String
+}
+
+model Roles {
+  id Int @unique @default(autoincrement())
+  role String @unique
+  createAt DateTime @default(now())
+  user User[]
 }
