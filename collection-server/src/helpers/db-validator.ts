@@ -29,3 +29,17 @@ export const mailExits = async(mail:string)=>{
         
 
 }
+
+export const existUserById = async(id:string)=>{
+
+    const existId = await user.findFirst({
+        where:{
+            id: parseInt(id)
+        }
+    })
+
+    if( !existId ){
+        throw new Error(`Id ${id} does not exists`)
+    }    
+
+}

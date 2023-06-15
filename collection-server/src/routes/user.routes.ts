@@ -1,10 +1,10 @@
 import { Router } from "express";
 
 // here we need to get our functions 
-import { getUser, getUserAll, postUser, updateUser } from "../controllers/user";
+import { deleteUser, getUser, getUserAll, postUser, updateUser } from "../controllers/user";
 import { check } from "express-validator";
 import { validationAreas } from "../middlewares/validations";
-import { isValidRole, mailExits } from "../helpers/db-validator";
+import { existUserById, isValidRole, mailExits } from "../helpers/db-validator";
 
 
 
@@ -25,6 +25,15 @@ router.post('/', [
     validationAreas 
 ], postUser)
 
-router.put('/:id', updateUser)
+router.put('/:id', [
+    check('id').custom(existUserById),
+    check('rolesId').custom( isValidRole ),
+    validationAreas
+], updateUser)
+
+router.delete('/:id', [
+    check('id').custom(existUserById),
+    validationAreas
+], deleteUser)
 
 export default router;

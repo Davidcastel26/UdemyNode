@@ -9,10 +9,16 @@ const { user } = new PrismaClient()
 
 export const getUserAll = async (req:Request, res:Response) => {
     
-    const allUsers = await user.findMany()
+    const { limit, since } = req.query;
+
+    const allUsers = await user.findMany({
+        take: limit ? Number(limit): undefined,
+        skip: since ? Number(since): undefined
+    })
 
     res.json({
         msg:'Get all users',
+        query:req.query,
         allUsers,
     })
 
@@ -98,5 +104,20 @@ export const updateUser = async(req:Request, res:Response) => {
         msg:'PUT DONE user Updated',
         userUpdate
     })
+
+}
+
+
+export const deleteUser =async (req:Request, res:Response) => {
+    
+    const { id } = req.params;
+
+    const userdelete = await user.delete({
+        where:{
+            id: Number(id)
+        }
+    })
+
+    res.status(204).json(userdelete)
 
 }
