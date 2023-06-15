@@ -69,3 +69,34 @@ export const postUser = async (req: Request, res:Response) => {
     })
 
 }
+
+export const updateUser = async(req:Request, res:Response) => {
+
+    const { id } = req.params;
+    const { password, Google, ...resto} = req.body;
+
+    const updateUsers ={
+        password,
+        Google
+        // ...resto
+    }
+
+    //valid with db
+    if( password ){
+        const salt = bcryptjs.genSaltSync();
+         updateUsers.password = bcryptjs.hashSync(password, salt)
+    }
+
+    const userUpdate = await user.update({
+        where:{
+            id: parseInt(id)
+        },
+        data: resto
+    })
+
+    res.status(200).json({
+        msg:'PUT DONE user Updated',
+        userUpdate
+    })
+
+}

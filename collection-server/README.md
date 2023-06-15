@@ -21,6 +21,7 @@ npx prisma migrate dev
 
 
 to encrypt the password intsl the bcryptjs
+--
 ```
 npm i bcryptjs
 ```
@@ -30,6 +31,7 @@ npm i --save-dev @types/bcryptjs
 ```
 
 to verify and MAIL ADDRESS
+--
 ```
 npm i express-validator
 ```
