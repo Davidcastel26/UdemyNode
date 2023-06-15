@@ -4,7 +4,7 @@ import { Router } from "express";
 import { getUser, getUserAll, postUser } from "../controllers/user";
 import { check } from "express-validator";
 import { validationAreas } from "../middlewares/validations";
-import { isValidRole } from "../helpers/db-validator";
+import { isValidRole, mailExits } from "../helpers/db-validator";
 
 
 
@@ -19,6 +19,7 @@ router.post('/', [
     check('name', 'Name is a must').not().isEmpty(),
     check('password','Pass must be more than 6 digits').isLength({min:6}),
     check('mail','Mail not valid').isEmail(),
+    check('mail').custom( mailExits ),
     // check('rol','its not a valid rol').isIn(['ADMIN_ROLE','USER_ROLE']),
     check('rolesId').custom( isValidRole ),
     validationAreas 

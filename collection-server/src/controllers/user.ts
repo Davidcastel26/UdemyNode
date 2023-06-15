@@ -54,16 +54,6 @@ export const postUser = async (req: Request, res:Response) => {
             rolesId
     }
 
-    //check if the mail exist
-    const existMail = await user.findUnique({
-        where: {
-            mail: mail
-        }
-    })
-    if( existMail ) return res.status(400).json({
-        msg: 'Mail already exist'
-    })
-
     // pass hash 
     const salt = bcryptjs.genSaltSync();
     createUser.password = bcryptjs.hashSync(password, salt)
