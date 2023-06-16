@@ -35,3 +35,10 @@ to verify and MAIL ADDRESS
 ```
 npm i express-validator
 ```
+
+to work with JWT install:
+--
+
+```
+npm i jsonwebtoken
+```
