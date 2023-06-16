@@ -24,12 +24,6 @@ export const login = async( req:Request, res:Response ) => {
         }
         // verify password 
 
-        // const userPassword = await user.findFirst({
-        //     where:{
-        //         password: password
-        //     }
-        // })
-
         const validPass = bcryptjs.compareSync( password , userdb.password )
 
         if( !validPass ){
