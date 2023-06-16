@@ -5,6 +5,7 @@ import { check } from "express-validator";
 import { deleteUser, getUser, getUserAll, postUser, updateUser } from "../controllers/user";
 import { validationAreas } from "../middlewares/validations";
 import { existUserById, isValidRole, mailExits } from "../helpers/db-validator";
+import { validateJWT } from "../middlewares/validation_jwt";
 
 const router = Router()
 
@@ -29,6 +30,7 @@ router.put('/:id', [
 ], updateUser)
 
 router.delete('/:id', [
+    validateJWT,
     check('id').custom(existUserById),
     validationAreas
 ], deleteUser)

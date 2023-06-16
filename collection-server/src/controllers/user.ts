@@ -112,6 +112,8 @@ export const deleteUser =async (req:Request, res:Response) => {
     
     const { id } = req.params;
 
+    // const uid = req.uid 
+
     const userdelete = await user.delete({
         where:{
             id: Number(id)
