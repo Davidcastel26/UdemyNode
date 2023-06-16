@@ -2,13 +2,15 @@ import express, {Application} from 'express';
 import cors from 'cors';
 
 import userRouter from '../routes/user.routes'
+import loginRouter from '../routes/auth.routes'
 
 export class Server{
  
     private app: Application;
     private port: string;
     private apiPaths = {
-        user: '/collectionserver/user'
+        user: '/collectionserver/user',
+        authPath:'/collectionserver/auth'
     }
 
     constructor(){
@@ -26,6 +28,7 @@ export class Server{
 
     routes(){
         this.app.use(this.apiPaths.user ,userRouter)
+        this.app.use(this.apiPaths.authPath, loginRouter )
     }
 
     listen(){

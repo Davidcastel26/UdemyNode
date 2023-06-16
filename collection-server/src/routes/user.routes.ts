@@ -1,13 +1,10 @@
 import { Router } from "express";
+import { check } from "express-validator";
 
 // here we need to get our functions 
 import { deleteUser, getUser, getUserAll, postUser, updateUser } from "../controllers/user";
-import { check } from "express-validator";
 import { validationAreas } from "../middlewares/validations";
 import { existUserById, isValidRole, mailExits } from "../helpers/db-validator";
-
-
-
 
 const router = Router()
 
