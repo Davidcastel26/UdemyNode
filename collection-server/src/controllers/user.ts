@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+const { request, response } = require('express')
 import { PrismaClient } from "@prisma/client";
 // to hash the password
 import  bcryptjs  from "bcryptjs"
@@ -108,10 +109,11 @@ export const updateUser = async(req:Request, res:Response) => {
 }
 
 
-export const deleteUser =async (req:Request, res:Response) => {
+export const deleteUser =async (req: typeof request, res: typeof response) => {
     
     const { id } = req.params;
 
+    // const uid = req.id;
     // const uid = req.uid 
 
     const userdelete = await user.delete({
@@ -120,6 +122,9 @@ export const deleteUser =async (req:Request, res:Response) => {
         }
     })
 
-    res.status(204).json(userdelete)
+    const userAuth = req.user
+
+    // res.status(204).json({userdelete, userAuth})
+    res.json({userdelete, userAuth})
 
 }
