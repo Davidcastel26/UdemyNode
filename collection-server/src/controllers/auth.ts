@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcryptjs from 'bcryptjs';
 
+import { generateJWT } from "../helpers/generateJWT";
+
 const { user } = new PrismaClient()
 
 export const login = async( req:Request, res:Response ) => {
@@ -33,9 +35,11 @@ export const login = async( req:Request, res:Response ) => {
         }
 
         // generate JWT 
+        const token = await generateJWT( userdb.id )
 
         res.status(201).json({
-            msg:'login'
+            userdb,
+            token
         })
 
     }catch(error){
