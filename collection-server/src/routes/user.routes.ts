@@ -3,11 +3,14 @@ import { check } from "express-validator";
 
 // here we need to get our functions 
 import { deleteUser, getUser, getUserAll, postUser, updateUser } from "../controllers/user";
-import { validationAreas } from "../middlewares/validations";
+// helpers
 import { existUserById, isValidRole, mailExits } from "../helpers/db-validator";
+// middlewares
+import { validationAreas } from "../middlewares/validations";
 import { validateJWT } from "../middlewares/validation_jwt";
+import { isOnlyAdminRole } from "../middlewares/validate_roles";
 
-const router = Router()
+const router = Router();
 
 router.get('/', getUserAll)
 
@@ -31,6 +34,7 @@ router.put('/:id', [
 
 router.delete('/:id', [
     validateJWT,
+    isOnlyAdminRole,
     check('id').custom(existUserById),
     validationAreas
 ], deleteUser)

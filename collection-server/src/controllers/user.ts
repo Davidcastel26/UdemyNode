@@ -122,9 +122,9 @@ export const deleteUser =async (req: typeof request, res: typeof response) => {
         }
     })
 
-    const userAuth = req.user
+    // const userAuth = req.user
 
-    // res.status(204).json({userdelete, userAuth})
-    res.json({userdelete, userAuth})
+    res.status(204).json(userdelete)
+    // res.json({userdelete, userAuth})
 
 }
