@@ -5,7 +5,7 @@ Proyect where we are creating a back-end for Music App
 - Data Base has 3 tables
     - 1 - for User  
     - 2 - Artist 
-    - 3 - music
+    - 3 - song
     - (a lot of users likes many song but songs have only one artis)
     - Db will be a SQL DB
 
@@ -18,6 +18,20 @@ npm install -D typescript
 npm install -D ts-node
 npm install -D nodemon
 ```
+EXPRESS
+--
+- Those are the dependencies for node.js express
+    - if fist does not work try with the secon option
+
+    ```
+    npm install express
+    npm i --save-dev @types/express
+
+    npm i cors
+    npm i --save-dev @types/cors
+
+    npm i 
+    ```
 
 JSON CONFIGs
 --
@@ -48,6 +62,14 @@ JSON CONFIGs
     "exec": "ts-node ./src/index.ts"
     }   
     ```
+- Do not forget to add start into package.json
+    - this will be the configuration:
+    ```
+    "scripts": {
+        "start": "nodemon",
+    }   
+    ```
+
 
 
 ORM info:
@@ -81,3 +103,4 @@ npx prisma init --datasource-provider sqlserver
     ```
     npx prisma studio
     ```
+
