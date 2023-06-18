@@ -4,7 +4,7 @@ import cors from 'cors'
 // import the routes from route files
 
 
-export class Music{
+export class Server{
     //private
     private app:Application
     private port:string
@@ -28,9 +28,9 @@ export class Music{
     }
 
     routes(){
-        this.app.use( this.apiPaths.user )
-        this.app.use( this.apiPaths.artist )
-        this.app.use( this.apiPaths.song )
+        this.app.use( this.apiPaths.user, ()=>{} )
+        this.app.use( this.apiPaths.artist,()=>{} )
+        this.app.use( this.apiPaths.song,()=>{} )
     }
 
     listen(){
