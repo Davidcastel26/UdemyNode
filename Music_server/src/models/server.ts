@@ -2,7 +2,8 @@ import express, { Application } from 'express'
 import cors from 'cors'
 
 // import the routes from route files
-
+import userRouter from '../routes/user.routes'
+import artistRouter from '../routes/artist.routes'
 
 export class Server{
     //private
@@ -11,7 +12,7 @@ export class Server{
     private apiPaths = {
         user:'musicserver/user',
         artist:'musicserver/artist',
-        song:'musicserver/song'
+        // song:'musicserver/song'
     }
     //constructor
     constructor(){
@@ -28,9 +29,9 @@ export class Server{
     }
 
     routes(){
-        this.app.use( this.apiPaths.user, ()=>{} )
-        this.app.use( this.apiPaths.artist,()=>{} )
-        this.app.use( this.apiPaths.song,()=>{} )
+        this.app.use( this.apiPaths.user, userRouter)
+        this.app.use( this.apiPaths.artist, artistRouter)
+        // this.app.use( this.apiPaths.song,()=>{} )
     }
 
     listen(){
