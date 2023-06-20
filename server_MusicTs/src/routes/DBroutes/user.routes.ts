@@ -6,14 +6,15 @@ import { createUser,
          deleteUser, 
          getAllUsers, 
          getUser, 
-         updateUser} from "../controllers/user";
+         updateUser} from "../../controllers/DBcontrollers/user";
 
 //Helpers section
-import { existUserById, mailExist } from "../helpers/db-validator";
+import { existUserById, mailExist } from "../../helpers/db-validator";
 
 // Middlewares section
-import { validationAreas } from "../middlewares/validations";
-import { validateJWT } from "../middlewares/validation_jwt";
+import { validationAreas } from "../../middlewares/validations";
+// import { validateJWT } from "../../middlewares/validation_jwt";
+import { validateJWT } from '../../middlewares/validation_jwt'
 
 const router = Router()
 

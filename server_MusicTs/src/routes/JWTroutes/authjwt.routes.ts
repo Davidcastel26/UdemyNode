@@ -2,10 +2,10 @@ import { Router } from "express";
 import { check } from "express-validator";
 
 // controllers section 
-import { login } from "../controllers/authjwt.user";
+import { login } from '../../controllers/JWT/authjwt.user'
 
 // middlewares section
-import { validationAreas } from "../middlewares/validations";
+import {validationAreas} from '../../middlewares/validations'
 
 const router = Router()
 

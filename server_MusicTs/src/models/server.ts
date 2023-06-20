@@ -2,8 +2,8 @@ import express, { Application } from 'express';
 import cors from 'cors'
 
 // routers 
-import userRouter from '../routes/user.routes'
-import JWTRouter from '../routes/authjwt.routes'
+import userRouter from '../routes/DBroutes/user.routes'
+import JWTRouter from '../routes/JWTroutes/authjwt.routes'
 
 class Server {
 
@@ -11,7 +11,8 @@ class Server {
     private port: string;
     private apiPaths = {
         user:'/apimusic/user',
-        authPath:'/apimusic/auth'
+        authPathUser:'/apimusic/auth',
+
     } 
     
     constructor (){
@@ -29,7 +30,7 @@ class Server {
 
     routes(){
         this.app.use(this.apiPaths.user, userRouter)
-        this.app.use(this.apiPaths.authPath, JWTRouter)
+        this.app.use(this.apiPaths.authPathUser, JWTRouter)
     }
 
     listen(){

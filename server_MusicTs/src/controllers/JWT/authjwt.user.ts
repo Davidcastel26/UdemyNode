@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import bcryptjs from 'bcryptjs';
 
 // helpers
-import { generateJWT } from '../helpers/generateJWT';
+import { generateJWT } from '../../helpers/generateJWT';
 
 const { user } = new PrismaClient()
 

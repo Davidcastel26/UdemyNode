@@ -28,13 +28,15 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
 
 } 
 
-export const getUser = async (req:Request, res: Response, next: NextFunction) => {
+export const getUser = async (req: typeof request, res: Response, next: NextFunction) => {
     
     const { id } = req.params
-
-    const query = { isActive : true}
+    // const uid = req.uid
 
     try {
+
+        const userAuth = req.user
+
         const oneUser = await user.findUnique({
             where:{
                 id: id
@@ -43,15 +45,22 @@ export const getUser = async (req:Request, res: Response, next: NextFunction) =>
             }
         })
 
-        if( oneUser.isActive === true ){
-            return res.status(201).json({
-                msg:"one user",
-                oneUser
+        if(userAuth.id !== oneUser.id){
+            return res.status(401).json({
+                msg:'token does not belong from same token id'
             })
         }else{
-            res.status(400).json({
-                msg:'user not found in DB'
-            })
+            if( oneUser.isActive === true ){
+                return res.status(201).json({
+                    msg:"one user",
+                    userAuth,
+                    oneUser
+                })
+            }else{
+                res.status(400).json({
+                    msg:'user not found in DB'
+                })
+            }
         }
 
     } catch (error) {
@@ -98,11 +107,12 @@ export const createUser = async (req:Request, res: Response, next: NextFunction)
 }
 
 
-export const updateUser = async (req: Request, res:Response) =>{
+export const updateUser = async (req: typeof request, res:Response) =>{
 
     const { id } = req.params
     const {password, name, ...userData } = req.body;
-    
+    const usertoken = req.user
+
     const updateData = {
         password,
         name,
@@ -123,7 +133,11 @@ export const updateUser = async (req: Request, res:Response) =>{
         }
     })
 
-    res.status(200).json({
+    if( usertoken.id !== id ){
+        return res.status(401).json({msg:'incorrect token - login first to update user'})
+    }
+
+    return res.status(200).json({
         msg:'PUT done user updated',
         updateData
     })
@@ -134,6 +148,8 @@ export const deleteUser = async (req:typeof request, res:typeof response ) => {
 
     const { id } = req.params
 
+    const userwithToken = req.user
+
     const userDelete = await user.update({
         where:{
             id: id
@@ -143,5 +159,9 @@ export const deleteUser = async (req:typeof request, res:typeof response ) => {
         }
     })
 
-    res.json(userDelete)
+    if( userwithToken.id !== userDelete.id)return res.status(401).json({
+        msg:'token not valid - login first to delete a user'
+    })
+
+    return res.json(userDelete)
 }
