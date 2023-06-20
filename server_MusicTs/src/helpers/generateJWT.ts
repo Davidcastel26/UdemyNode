@@ -4,6 +4,7 @@ export const generateJWT = ( uid: string) =>{
     
     return new Promise((resolve: Function, reject: Function) => {
 
+        //setting payload remeber use it on validation_jwt file middlewares
         const payload = { uid }
 
         // we need to involque our key from env this will be the signature

@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "express"
+import { Request, Response, NextFunction, json } from 'express';
+const {request, response} = require('express')
 import { PrismaClient } from "@prisma/client"
 import bcryptjs from 'bcryptjs'
 import {v4 as uuidv4} from 'uuid';
@@ -12,7 +13,9 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
 
     try{
 
-        const allUsers = await user.findMany()
+        const allUsers = await user.findMany({where:{
+            isActive: true
+        }})
 
         res.json({
             msg:'all users',
@@ -29,18 +32,28 @@ export const getUser = async (req:Request, res: Response, next: NextFunction) =>
     
     const { id } = req.params
 
+    const query = { isActive : true}
+
     try {
         const oneUser = await user.findUnique({
             where:{
                 id: id
+            },include:{
+                listen: true
             }
         })
-    
-        return res.status(201).json({
-            msg:"one user",
-            oneUser
-        })
-        
+
+        if( oneUser.isActive === true ){
+            return res.status(201).json({
+                msg:"one user",
+                oneUser
+            })
+        }else{
+            res.status(400).json({
+                msg:'user not found in DB'
+            })
+        }
+
     } catch (error) {
         next(error)
     }
@@ -117,4 +130,18 @@ export const updateUser = async (req: Request, res:Response) =>{
 
 }
 
-// export const deleteUser
+export const deleteUser = async (req:typeof request, res:typeof response ) => {
+
+    const { id } = req.params
+
+    const userDelete = await user.update({
+        where:{
+            id: id
+        },
+        data:{
+            isActive: false
+        }
+    })
+
+    res.json(userDelete)
+}

@@ -3,6 +3,7 @@ import { check } from 'express-validator'
 
 //Controllers section
 import { createUser, 
+         deleteUser, 
          getAllUsers, 
          getUser, 
          updateUser} from "../controllers/user";
@@ -12,12 +13,14 @@ import { existUserById, mailExist } from "../helpers/db-validator";
 
 // Middlewares section
 import { validationAreas } from "../middlewares/validations";
+import { validateJWT } from "../middlewares/validation_jwt";
 
 const router = Router()
 
 router.get('/', getAllUsers)
 
 router.get('/:id', [
+    validateJWT,
     check('id').custom(existUserById),
     validationAreas
 ], getUser)
@@ -30,11 +33,15 @@ router.post('/', [
 ], createUser)
 
 router.put('/:id',[
+    validateJWT,
     check('id').custom(existUserById),
     validationAreas
 ], updateUser)
 
-
-
+router.delete('/:id', [
+    validateJWT,
+    check('id').custom(existUserById),
+    validationAreas
+], deleteUser)
 
 export default router;
