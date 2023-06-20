@@ -83,3 +83,38 @@ export const createUser = async (req:Request, res: Response, next: NextFunction)
     }
 
 }
+
+
+export const updateUser = async (req: Request, res:Response) =>{
+
+    const { id } = req.params
+    const {password, name, ...userData } = req.body;
+    
+    const updateData = {
+        password,
+        name,
+        userData
+    }
+
+    const salt = bcryptjs.genSaltSync()
+    updateData.password = bcryptjs.hashSync(password, salt)
+
+    await user.update({
+        where:{
+            id:id
+        },
+        data:{
+            password:password,
+            name: name,
+            ...userData
+        }
+    })
+
+    res.status(200).json({
+        msg:'PUT done user updated',
+        updateData
+    })
+
+}
+
+// export const deleteUser

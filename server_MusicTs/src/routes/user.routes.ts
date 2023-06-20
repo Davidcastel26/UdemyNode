@@ -4,7 +4,8 @@ import { check } from 'express-validator'
 //Controllers section
 import { createUser, 
          getAllUsers, 
-         getUser } from "../controllers/user";
+         getUser, 
+         updateUser} from "../controllers/user";
 
 //Helpers section
 import { existUserById, mailExist } from "../helpers/db-validator";
@@ -27,5 +28,13 @@ router.post('/', [
     check('password','Pass must be more than 6 digits').isLength({min:6}),
     check('mail').custom(mailExist),
 ], createUser)
+
+router.put('/:id',[
+    check('id').custom(existUserById),
+    validationAreas
+], updateUser)
+
+
+
 
 export default router;
