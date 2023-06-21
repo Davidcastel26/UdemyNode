@@ -24,6 +24,8 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
 
     }catch(err){
         next(err)
+        console.log(res.status(401).json({msg:'no able to get data'}));
+        
     }
 
 } 

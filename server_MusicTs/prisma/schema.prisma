@@ -41,6 +41,7 @@ model Artists{
   id String @unique
   artistUser String @unique
   name String
+  password String
   isActive Boolean @default(true)
   // songsMade Songs @relation(fields: [songId], references: [id])
   // songId String
