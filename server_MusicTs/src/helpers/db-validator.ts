@@ -55,6 +55,20 @@ export const roleExist = async (roleId:number) =>{
 
 }
 
+export const existRoleById = async ( id:number ) => {
+
+    const existiId = await roles.findUnique({
+        where:{
+            id: id
+        }
+    })
+
+    if(!existiId){
+        throw new Error(`Role with id ${id} does not match`)
+    } 
+
+}
+
 export const existArtistId = async (artistId: string) => {
     const existId = await artists.findUnique({where:{id:artistId}})
 

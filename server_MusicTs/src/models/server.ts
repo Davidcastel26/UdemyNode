@@ -6,6 +6,7 @@ import cors from 'cors'
 import userRouter from '../routes/DBroutes/user.routes'
 import songRouter from '../routes/DBroutes/songs.routes'
 import artistRouter from '../routes/DBroutes/artists.routes'
+import rolesRouter from '../routes/DBroutes/roles.routes'
     //JWT 
 import JWTRouter from '../routes/JWTroutes/authjwt.routes'
 
@@ -14,10 +15,11 @@ class Server {
     private app: Application
     private port: string;
     private apiPaths = {
+        role:'/apimusic/roles',
         user:'/apimusic/user',
-        authPathUser:'/apimusic/auth',
         song:'/apimusic/songs',
-        artist:'/apimusic/artists'
+        artist:'/apimusic/artists',
+        authPathUser:'/apimusic/auth'
     } 
     
     constructor (){
@@ -38,6 +40,7 @@ class Server {
         this.app.use(this.apiPaths.authPathUser, JWTRouter)
         this.app.use(this.apiPaths.song, songRouter)
         this.app.use(this.apiPaths.artist, artistRouter )
+        this.app.use(this.apiPaths.role, rolesRouter )
     }
 
     listen(){
