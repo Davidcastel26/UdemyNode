@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-const { user, songs } = new PrismaClient()
+const { user, songs, roles, artists } = new PrismaClient()
 
 
 //check in DB if user id exist 
@@ -42,4 +42,21 @@ export const existSongId = async(id:string) =>{
         }
     })
     if(!existId)throw new Error(`id ${id} does not exist`)
+}
+
+export const roleExist = async (roleId:number) =>{
+    const existRole = await roles.findUnique({
+        where:{
+            id: roleId
+        }
+    })
+
+    if( !existRole ) throw new Error(`Role ${roleId} does not exist`)
+
+}
+
+export const existArtistId = async (artistId: string) => {
+    const existId = await artists.findUnique({where:{id:artistId}})
+
+    if( !existId ) throw new Error(`Artist ${artistId} does not exist`)
 }

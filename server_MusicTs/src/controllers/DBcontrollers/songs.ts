@@ -1,5 +1,6 @@
-import { Request, Response, request} from "express";
+import { NextFunction, Request, Response, request} from "express";
 import { PrismaClient } from "@prisma/client";
+import { v4 as uuidv4 } from 'uuid';
 
 // const {request} = require('express')
 
@@ -9,7 +10,7 @@ export const getAllSongs = async(req:Request, res:Response) =>{
 
     const allSongs = await songs.findMany({
         include:{
-            artist:true
+            songsMadeBy:true
         }
     })
 
@@ -28,8 +29,9 @@ export const getSong = async(req: typeof request , res: Response )=>{
             id: id
         },
         include:{
-            artist:true,
-            user:true
+            songsMadeBy:true,
+            user:true,
+            roles: true
         }
     })
 
@@ -37,4 +39,34 @@ export const getSong = async(req: typeof request , res: Response )=>{
         msg:'get one song',
         songId
     })
+}
+
+export const postSong = async(req: Request, res:Response, next: NextFunction)=>{
+
+    const { song, realiceDate, artistId, roleId } = req.body
+
+    try {
+
+        const id:string = uuidv4()
+
+        const createSong = await songs.create({
+            data:{
+                id,
+                song,
+                realiceDate,
+                artistId,
+                roleId
+            }
+        })
+
+        res.status(201).json({
+            msg:'Song created',
+            createSong
+        })
+
+    }catch(err){
+        next(err)
+        console.log(res.status(401).json({msg:'couldnt create song'}))
+    }
+
 }

@@ -73,7 +73,7 @@ export const createUser = async (req:Request, res: Response, next: NextFunction)
     
     try{
 
-    const { name, mail, password, songId } = req.body
+    const { name, mail, password, songId, roleId } = req.body
 
     const id:string = uuidv4()
 
@@ -82,7 +82,8 @@ export const createUser = async (req:Request, res: Response, next: NextFunction)
         name,
         mail,
         password,
-        songId
+        songId,
+        roleId
     }
 
     //pass hashing
