@@ -25,12 +25,12 @@ model User{
 model Songs{
   id String @unique
   song String @unique
-  realiceDate DateTime 
+  realiceDate String 
   isActive Boolean @default(true)
   user User[]
-  artist Artists[]
-  // songsMadeBy Artists @relation(fields: [artistId], references: [id])
-  // artistId String
+  // artist Artists[]
+  songsMadeBy Artists @relation(fields: [artistId], references: [id])
+  artistId String
 }
 
 model Artists{
@@ -38,7 +38,16 @@ model Artists{
   artistUser String @unique
   name String
   isActive Boolean @default(true)
-  songsMade Songs @relation(fields: [songId], references: [id])
-  songId String
-  // songs Songs[]
+  // songsMade Songs @relation(fields: [songId], references: [id])
+  // songId String
+  songs Songs[]
+  roles Roles @relation(fields: [roleId], references: [id])
+  roleId String
+}
+
+model Roles{
+  id String @unique
+  role String @unique
+  createAt DateTime @default(now())
+  artist Artists[]
 }
