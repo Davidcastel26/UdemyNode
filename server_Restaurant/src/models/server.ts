@@ -3,6 +3,7 @@ import cors from 'cors'
 
 // routes
 import userRouter from '../routes/db/user.routes'
+import chefRouter from '../routes/db/chef.routes'
 
 class Server {
 
@@ -10,6 +11,7 @@ class Server {
     private port: string;
     private apiPaths = {
         user:'/api/users', 
+        chef:'/api/chefs'
     }
 
     constructor(){
@@ -27,6 +29,7 @@ class Server {
 
     routes(){
         this.app.use( this.apiPaths.user, userRouter)
+        this.app.use( this.apiPaths.chef, chefRouter)
     }
 
     listen(){

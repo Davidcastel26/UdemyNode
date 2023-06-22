@@ -31,7 +31,9 @@ model Menu {
 }
 
 model Chef {
-  id Int @unique @default(autoincrement())
+  // id Int @unique @default(autoincrement())
+  id  Int @unique @default(autoincrement())
+  // id String @unique
   name String
   isActive Boolean @default(true)
   creatAt DateTime @default(now())

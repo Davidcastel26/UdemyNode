@@ -19,13 +19,13 @@ CREATE TABLE [dbo].[Menu] (
     [name] NVARCHAR(1000) NOT NULL,
     [isActive] BIT NOT NULL CONSTRAINT [Menu_isActive_df] DEFAULT 1,
     [createAt] DATETIME2 NOT NULL CONSTRAINT [Menu_createAt_df] DEFAULT CURRENT_TIMESTAMP,
-    [chefId] INT NOT NULL,
+    [chefId] NVARCHAR(1000) NOT NULL,
     CONSTRAINT [Menu_id_key] UNIQUE NONCLUSTERED ([id])
 );
 
 -- CreateTable
 CREATE TABLE [dbo].[Chef] (
-    [id] INT NOT NULL IDENTITY(1,1),
+    [id] NVARCHAR(1000) NOT NULL,
     [name] NVARCHAR(1000) NOT NULL,
     [isActive] BIT NOT NULL CONSTRAINT [Chef_isActive_df] DEFAULT 1,
     [creatAt] DATETIME2 NOT NULL CONSTRAINT [Chef_creatAt_df] DEFAULT CURRENT_TIMESTAMP,
