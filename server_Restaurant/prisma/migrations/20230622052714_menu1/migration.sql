@@ -1,0 +1,52 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- CreateTable
+CREATE TABLE [dbo].[User] (
+    [id] NVARCHAR(1000) NOT NULL,
+    [name] NVARCHAR(1000) NOT NULL,
+    [password] NVARCHAR(1000) NOT NULL,
+    [isActive] BIT NOT NULL CONSTRAINT [User_isActive_df] DEFAULT 1,
+    [creatAt] DATETIME2 NOT NULL CONSTRAINT [User_creatAt_df] DEFAULT CURRENT_TIMESTAMP,
+    [menuId] NVARCHAR(1000) NOT NULL,
+    CONSTRAINT [User_id_key] UNIQUE NONCLUSTERED ([id])
+);
+
+-- CreateTable
+CREATE TABLE [dbo].[Menu] (
+    [id] NVARCHAR(1000) NOT NULL,
+    [name] NVARCHAR(1000) NOT NULL,
+    [isActive] BIT NOT NULL CONSTRAINT [Menu_isActive_df] DEFAULT 1,
+    [createAt] DATETIME2 NOT NULL CONSTRAINT [Menu_createAt_df] DEFAULT CURRENT_TIMESTAMP,
+    [chefId] INT NOT NULL,
+    CONSTRAINT [Menu_id_key] UNIQUE NONCLUSTERED ([id])
+);
+
+-- CreateTable
+CREATE TABLE [dbo].[Chef] (
+    [id] INT NOT NULL IDENTITY(1,1),
+    [name] NVARCHAR(1000) NOT NULL,
+    [isActive] BIT NOT NULL CONSTRAINT [Chef_isActive_df] DEFAULT 1,
+    [creatAt] DATETIME2 NOT NULL CONSTRAINT [Chef_creatAt_df] DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT [Chef_id_key] UNIQUE NONCLUSTERED ([id])
+);
+
+-- AddForeignKey
+ALTER TABLE [dbo].[User] ADD CONSTRAINT [User_menuId_fkey] FOREIGN KEY ([menuId]) REFERENCES [dbo].[Menu]([id]) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[Menu] ADD CONSTRAINT [Menu_chefId_fkey] FOREIGN KEY ([chefId]) REFERENCES [dbo].[Chef]([id]) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH
