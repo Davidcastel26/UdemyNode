@@ -3,7 +3,7 @@ import { check } from "express-validator";
 
 // controllers
 import { createUser, 
-         getAllUsers } from "../../controllers/db/user";
+         getAllUsers } from "../../controllers/db_controllers/user";
 
 //middleware
 import { validationAreas } from "../../middleware/validation_areas";

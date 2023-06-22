@@ -2,8 +2,12 @@ import express, {Application} from 'express';
 import cors from 'cors'
 
 // routes
-import userRouter from '../routes/db/user.routes'
-import chefRouter from '../routes/db/chef.routes'
+import userRouter from '../routes/db_Routes/user.routes'
+import chefRouter from '../routes/db_Routes/chef.routes'
+import menuRouter from '../routes/db_Routes/menu.routes'
+
+//jwt
+import JWTuserRouter from '../routes/jwtRoutes/jwtUser'
 
 class Server {
 
@@ -11,7 +15,9 @@ class Server {
     private port: string;
     private apiPaths = {
         user:'/api/users', 
-        chef:'/api/chefs'
+        chef:'/api/chefs',
+        menu:'/api/menus',
+        jwtUser:'/api/user'
     }
 
     constructor(){
@@ -30,6 +36,8 @@ class Server {
     routes(){
         this.app.use( this.apiPaths.user, userRouter)
         this.app.use( this.apiPaths.chef, chefRouter)
+        this.app.use( this.apiPaths.menu, menuRouter)
+        this.app.use( this.apiPaths.jwtUser, JWTuserRouter)
     }
 
     listen(){
