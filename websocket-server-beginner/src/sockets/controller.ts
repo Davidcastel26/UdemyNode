@@ -2,13 +2,13 @@
 
 export const socketController = (socket:any) => {
 
-    console.log('Client connected', socket.id);
+    // console.log('Client connected', socket.id);
     // socket.disconect()s
 
-    socket.on('disconnect', () => {
-        console.log('Client disconected');
+    // socket.on('disconnect', () => {
+    //     console.log('Client disconected');
         
-    })
+    // })
 
     socket.on('send-Message', ( payload: object, callback : Function ) => {
 
