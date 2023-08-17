@@ -9,7 +9,7 @@ const socket      = io()
 
 socket.on('connect', () => {
 
-    console.log('connected bro');
+    // console.log('connected bro');
 
     lbOffline.style.display = 'none';
     lbOnline.style.display = '';
@@ -23,6 +23,10 @@ socket.on('disconnect', () =>{
     lbOnline.style.display = 'none';
 });
 
+socket.on('send-Message', (payload) => {
+    console.log(payload);
+})
+
 btnSend.addEventListener('click', () => {
 
     const mensaje = txtMenssage.value;
@@ -33,5 +37,7 @@ btnSend.addEventListener('click', () => {
         date: new Date().getTime()
     }
     
-    socket.emit('send-Message', payload)
+    socket.emit('send-Message', payload, (id) => {
+        console.log('desde el server', id);
+    })
 })

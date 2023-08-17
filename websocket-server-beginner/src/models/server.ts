@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import cors from 'cors';
+import { socketController } from "../sockets/controller";
 // import server from 'socketio' 
 
 // import routes here 
@@ -42,20 +43,7 @@ class Server{
 
     sockets(){
 
-        this.io.on('connection', (socket:any) => {
-            console.log('Client connected', socket.id);
-            // socket.disconect()s
-
-            socket.on('disconnect', () => {
-                console.log('Client disconected');
-                
-            })
-
-            socket.on('send-Message', ( payload: object ) => {
-                console.log(payload);
-                
-            })
-        })
+        this.io.on('connection', socketController)
 
 
     }
