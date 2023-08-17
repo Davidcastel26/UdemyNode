@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket Client</title>
+</head>
+<body>
+    <h1>Socket Client</h1>
+    <hr>
+
+    <p>
+        Server Status
+        <span id="lbOnline" > Online  </span>
+        <span id="lbOffline"> Offline </span>
+    </p>
+
+    <div class="">
+        <div>
+            <input type="text" id="txtMenssage" class="from-control">
+        </div>
+        <div>
+            <button id="btnSend">
+                Send
+            </button>
+        </div>
+    </div>
+
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="./js/socket-client.js"></script>
+</body>
+</html>
