@@ -25,7 +25,7 @@
 
     const birthOfDay = new Date();
 
-    const day: number = 23;
+    const elapsedTimeInDays: number = 23;
 
     const numDirectory: number = 33;
 
